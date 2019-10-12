@@ -8,4 +8,4 @@ api.use(async (ctx: any) => {
 	await readFile('data/zen_2019-10-12.csv').then(res => (ctx.body = res));
 });
 
-api.listen(3000);
+api.listen(3001);
