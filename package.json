@@ -13,9 +13,11 @@
   "dependencies": {
     "csv-parser": "^2.3.1",
     "koa": "^2.10.0",
+    "koa-router": "^7.4.0",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
+    "@types/koa-router": "^7.0.42",
     "@types/node": "^12.7.12",
     "nodemon": "^1.19.3",
     "prettier": "^1.18.2",
