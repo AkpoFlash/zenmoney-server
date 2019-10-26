@@ -1,0 +1,11 @@
+{
+	"default": {
+		"app": {
+			"name": "zenmoney-server"
+		},
+		"server": {
+			"port": 3001,
+			"host": "localhost"
+		}
+	}
+}
