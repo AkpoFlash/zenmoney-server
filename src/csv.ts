@@ -1,26 +1,15 @@
-import { ICSVResult } from './interfaces';
+import fs from 'fs';
+import csv from 'csv-parser';
 
-const fs = require('fs');
-const csv = require('csv-parser');
-const isEmpty = require('lodash/isEmpty');
-const mapKeys = require('lodash/mapKeys');
+import { ICSVResult } from './interfaces/interfaces';
 
 export const readFile = (path: string) => {
-	return new Promise((res, rej) => {
+	return new Promise<ICSVResult[]>((res, rej) => {
 		const result: ICSVResult[] = [];
-		let header: ICSVResult;
 
 		fs.createReadStream(path)
 			.pipe(csv())
-			.on('data', (row: ICSVResult) => {
-				if (!isEmpty(row)) {
-					if (isEmpty(header)) {
-						header = row;
-					} else {
-						result.push(mapKeys(row, (value: string, key: keyof ICSVResult) => header[key]));
-					}
-				}
-			})
+			.on('data', (row: ICSVResult) => result.push(row))
 			.on('end', () => res(result))
 			.on('error', (err: Error) => rej(err));
 	});
