@@ -1,7 +1,7 @@
 import fs from 'fs';
 import csv from 'csv-parser';
 
-import { ICSVResult } from './interfaces/interfaces';
+import { ICSVResult } from '../interfaces/interfaces';
 
 export const readFile = (path: string) => {
 	return new Promise<ICSVResult[]>((res, rej) => {

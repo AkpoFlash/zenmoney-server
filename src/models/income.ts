@@ -2,7 +2,7 @@ import filter from 'lodash/filter';
 import reduce from 'lodash/reduce';
 import { isSameMonth } from 'date-fns';
 
-import { readFile } from '../csv';
+import { readFile } from '../helpers/csv';
 import { ICSVResult } from '../interfaces/interfaces';
 
 export const getTotal = (data: string, year: string, month: string) => {
