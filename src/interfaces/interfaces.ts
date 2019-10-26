@@ -1,5 +1,5 @@
 export interface ICSVResult {
-	date: string;
+	'﻿date': string;
 	categoryName: string;
 	payee: string;
 	comment: string;

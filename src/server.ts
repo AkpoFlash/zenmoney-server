@@ -1,35 +1,12 @@
-import { readFile } from './csv';
+import Koa from 'koa';
 
-const Koa = require('koa');
-const Router = require('koa-router');
-const filter = require('lodash/filter');
+import { routes, allowedMethods } from './routers';
+import { errorHandler } from './middlewares/error';
 
-const api = new Koa();
-const router = new Router();
+const app = new Koa();
 
-router.get('/', async (ctx: any) => {
-	ctx.set('Content-Type', 'application/json');
-	ctx.set('Access-Control-Allow-Origin', '*');
-	await readFile('data/zen_2019-10-12.csv').then(res => (ctx.body = res));
-});
+app.use(errorHandler);
+app.use(routes());
+app.use(allowedMethods());
 
-router.get('/getIncome', async (ctx: any) => {
-	ctx.set('Content-Type', 'application/json');
-	ctx.set('Access-Control-Allow-Origin', '*');
-	await readFile('data/zen_2019-10-12.csv')
-		.then(res => filter(res, 'income'))
-		.then(res => (ctx.body = res));
-});
-
-router.get('/getOutcome', async (ctx: any) => {
-	ctx.set('Content-Type', 'application/json');
-	ctx.set('Access-Control-Allow-Origin', '*');
-	await readFile('data/zen_2019-10-12.csv')
-		.then(res => filter(res, 'outcome'))
-		.then(res => (ctx.body = res));
-});
-
-api.use(router.routes());
-api.use(router.allowedMethods());
-
-api.listen(3001);
+app.listen(3001);
