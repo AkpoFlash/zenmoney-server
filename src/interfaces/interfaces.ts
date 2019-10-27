@@ -1,3 +1,5 @@
+import { CURRENCY } from '../helpers/models';
+
 export interface ICSVResult {
 	'﻿date': string;
 	categoryName: string;
@@ -5,10 +7,10 @@ export interface ICSVResult {
 	comment: string;
 	outcomeAccountName: string;
 	outcome: string;
-	outcomeCurrencyShortTitle: string;
+	outcomeCurrencyShortTitle: CURRENCY;
 	incomeAccountName: string;
 	income: string;
-	incomeCurrencyShortTitle: string;
+	incomeCurrencyShortTitle: CURRENCY;
 	createdDate: string;
 	changedDate: string;
 }
