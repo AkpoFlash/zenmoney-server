@@ -1,6 +1,10 @@
 import filter from 'lodash/filter';
 import { Cashify } from 'cashify';
+import { config } from 'dotenv';
+
 import { ICSVResult } from '../interfaces/interfaces';
+
+config();
 
 export enum CURRENCY {
 	EUR = 'EUR',
@@ -8,7 +12,7 @@ export enum CURRENCY {
 	USD = 'USD',
 }
 
-export const DATA_FILE_NAME = 'data/zen_2019-10-24.csv';
+export const DATA_FILE_NAME = `${process.env.PATH_TO_RESOURCES}/zen_2019-10-24.csv`;
 
 export const convertToRUB = (currency: CURRENCY, value: string, currencyExchangeRates: object): number => {
 	const cashify = new Cashify({ base: CURRENCY.USD, rates: currencyExchangeRates });
